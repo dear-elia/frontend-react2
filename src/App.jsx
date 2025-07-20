@@ -3,6 +3,35 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+//defining the list object
+const list  = [
+  {
+    title: 'React',
+    url: 'https://reactjs.org/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+  {
+    title: 'JSX',
+    url: 'https://js.js.org/',
+    author: 'Andrew Clark',
+    num_comments: 0,
+    points: 10,
+    objectID: 2,
+  },
+];
+
+
 //defining the function 
 function getTitle(title){
   return title;
@@ -18,6 +47,9 @@ const welcome = {
 const title = 'React';
 
 function App() {
+
+  const totalPoints = list.reduce((sum, item) => sum + item.points, 0);
+
   return (
       <div>
         <h1>Hello Eldira</h1>
@@ -29,6 +61,70 @@ function App() {
           {welcome.title}
         </h2>
         <h3>Hello {getTitle('Eldira')}</h3>
+        <ul>
+          {list.map((item) => <li key={item.objectID}>{item.title}</li>)}
+        </ul>
+
+        <ul>
+          {list.map((item) => (
+            <li key={item.objectID}> 
+              <div>Title: {item.title}</div>
+              <div>URL: {item.url}</div>
+              <div>Author: {item.author}</div>
+              <div>Comments: {item.num_comments}</div>
+            </li>
+          ))}
+        </ul>
+
+        <ul>
+          {list.map(function(item){
+            return <li key={item.objectID}>{item.title}</li>;
+          })}
+        </ul>
+
+        <ul>
+          {list.map(function(item){
+            return (
+              <li key={item.objectID}>
+                <span>
+                  <a href={item.url}>{item.title}</a>
+                </span>{' '}
+                <span>{item.author}</span>{' '}
+                <span>{item.num_comments}</span>{' '}
+                <span>{item.points}</span>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/*showing only the items with more than 2 comments */}
+        <ul>
+          {list
+            .filter(item => item.num_comments >= 2)
+            .map(item => (
+              <li key={item.objectID}>{item.title}</li>
+            ))}
+        </ul>
+
+        {/*showing only the items with 5 points */}
+        <ul>
+          {list
+            .filter(item => item.points > 6)
+            .map(item => (
+              <li key={item.objectID}>{item.title}</li>
+            ))}
+        </ul>
+        
+        <ul>
+          {list
+            .filter(item => item.points > 6)
+            .map(item => <li key={item.objectID}>{item.title}</li>)
+          }
+        </ul>
+
+        {/* calculationg the sum of comments */}
+        <h1>Total points: {totalPoints}</h1>
+
       </div>
   );
 }
