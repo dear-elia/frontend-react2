@@ -46,16 +46,12 @@ const welcome = {
 //JS string primitive
 const title = 'React';
 
-function App() {
-
-  const totalPoints = list.reduce((sum, item) => sum + item.points, 0);
-
-  return (
+const App = () => (
       <div>
         <h1>Hello Eldira</h1>
 
         <Search />
-        
+
         <h2>
           {welcome.greeting}
           {welcome.title}
@@ -112,14 +108,11 @@ function App() {
 
         <List />
       </div>
-  );
-}
+);
 
-function List(){
-  return (
+const List = () => (
     <ul>
-      {list.map(function(item){
-            return (
+      {list.map((item) => (
               <li key={item.objectID}>
                 <span>
                   <a href={item.url}>{item.title}</a>
@@ -128,18 +121,15 @@ function List(){
                 <span>{item.num_comments}</span>{' '}
                 <span>{item.points}</span>
               </li>
-            );
-          })}
+      ))}
     </ul>
-  )
-}
+);
 
-function Search(){
-  return (
+const Search = () => (
     <div>
        <label htmlFor='search'>Search: </label>
        <input id='search' type='text' />
     </div>
-  )
-}
+);
+
 export default App
