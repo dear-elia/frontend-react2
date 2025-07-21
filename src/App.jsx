@@ -1,9 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-//defining the list object
 const list  = [
   {
     title: 'React',
@@ -103,10 +102,8 @@ const App = () => (
           }
         </ul>
 
-        {/* calculationg the sum of comments */}
-        <h1>Total points: {totalPoints}</h1>
-
         <List />
+        <TextNew/>
       </div>
 );
 
@@ -125,11 +122,32 @@ const List = () => (
     </ul>
 );
 
-const Search = () => (
+const Search = () => {
+  const handleChange = (event) =>{
+    console.log(event);
+    console.log(event.target.value);
+  }
+  return (
     <div>
-       <label htmlFor='search'>Search: </label>
-       <input id='search' type='text' />
+    <label htmlFor='search'>Search: </label>
+    <input id='search' type='text' onChange={handleChange}/>
+ </div>
+  );
+};
+
+function TextNew() {
+  const [text, setText] = React.useState('');
+
+  function handleChange(event) {
+    setText(event.target.value);
+  }
+
+  return (
+    <div>
+      <input type="text" value = {text} onChange={handleChange}/>{text}
     </div>
-);
+  );
+}
+
 
 export default App
