@@ -142,9 +142,13 @@ function TextNew() {
     setText(event.target.value);
   }
 
+  function handleBlur(event){
+    console.log('Lost the focus of input field')
+  }
+
   return (
     <div>
-      <input type="text" value = {text} onChange={handleChange}/>{text}
+      <input type="text" value = {text} onChange={handleChange} onBlur={handleBlur}/>{text}
     </div>
   );
 }
