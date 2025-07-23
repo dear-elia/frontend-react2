@@ -128,19 +128,30 @@ const App = () => {
   );
 };
 
+
+/*We accceot and use list from props instead of using global scope
+and it loops over the list and renders Item component for each time*/
+
 const List = (props) => (
     <ul>
-      {list.map((item) => (
-              <li key={item.objectID}>
-                <span>
-                  <a href={item.url}>{item.title}</a>
-                </span>{' '}
-                <span>{item.author}</span>{' '}
-                <span>{item.num_comments}</span>{' '}
-                <span>{item.points}</span>
-              </li>
+      {props.list.map((item) => (
+        <Item key = {item.objectID} item = {item} />
       ))}
     </ul>
+);
+
+/*small Item component receives one item from the parent List and 
+display that item'data*/
+
+const Item = (props) =>(
+  <li>
+   <span>
+      <a href={props.item.url}>{props.item.title}</a>
+    </span>
+    <span>{props.item.author}</span>
+    <span>{props.item.num_comments}</span>
+    <span>{props.item.points}</span>
+  </li>
 );
 
 const Search = () => {
