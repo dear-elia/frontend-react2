@@ -67,6 +67,10 @@ const App = () => {
     },
   ];
 
+  const handleSearch = (event)=>{
+    console.log(event.target.value);
+  };
+
   return (
       <div>
         <h1>Hello Eldira</h1>
@@ -123,6 +127,10 @@ const App = () => {
             .map(item => <li key={item.objectID}>{item.title}</li>)
           }
         </ul>
+        
+        <h1>My Hacker Stories</h1>
+        
+        <Search onSearch={handleSearch}/>
 
         <List list={stories} />
         <TextNew/>
@@ -156,14 +164,17 @@ const Item = (props) =>(
   </li>
 );
 
-const Search = () => {
-  console.log('Search renders');
+const Search = (props) => {
+  //console.log('Search renders');
 
   //let searchTerm = '';
   const [searchTerm, setSearchTerm] = React.useState('');
 
   const handleChange = (event) =>{
     setSearchTerm(event.target.value);
+
+    console.log("Execute the callback function");
+    props.onSearch(event);
   };
 
   return (
