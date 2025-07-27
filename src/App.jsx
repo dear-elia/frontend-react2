@@ -150,8 +150,6 @@ const List = (props) => (
     </ul>
 );
 
-/*small Item component receives one item from the parent List and 
-display that item'data*/
 
 const Item = (props) =>(
   <li>
@@ -165,7 +163,6 @@ const Item = (props) =>(
 );
 
 const Search = (props) => {
-  //console.log('Search renders');
 
   //let searchTerm = '';
   const [searchTerm, setSearchTerm] = React.useState('');
