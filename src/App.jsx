@@ -38,6 +38,14 @@ const App = () => {
       points: 5,
       objectID: 1,
     },
+    {
+      title: 'Java',
+      url: 'https://java.org/',
+      author: 'Javist',
+      num_comments: 2,
+      points: 10,
+      objectID: 2,
+    },
   ];
 
   const handleSearch = (event)=>{
@@ -141,7 +149,7 @@ const Search = (props) => {
   const handleChange = (event) =>{
     setSearchTerm(event.target.value);
 
-    console.log("Execute the callback function");
+    //console.log("Execute the callback function");
     props.onSearch(event);
   };
 
@@ -165,7 +173,7 @@ function TextNew() {
   }
 
   function handleBlur(event){
-    console.log('Lost the focus of input field')
+    //console.log('Lost the focus of input field')
   }
 
   return (
