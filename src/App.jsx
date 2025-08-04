@@ -75,7 +75,7 @@ const App = () => {
             </li>
           ))}
         </ul>
-
+        {/*using map function for displaying the list */}
         <ul>
           {list.map(function(item){
             return <li key={item.objectID}>{item.title}</li>;
