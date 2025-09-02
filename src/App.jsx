@@ -35,7 +35,7 @@ const App = () => {
   ];
 
   //define the state in App component in order to get rid of duplication in App and Search
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchTerm, setSearchTerm] = React.useState('React');
 
   const handleSearch = (event)=>{
     setSearchTerm(event.target.value);
@@ -51,7 +51,7 @@ const App = () => {
       <div>
         <h1>My Hacker Stories</h1>
         
-        <Search onSearch={handleSearch}/>
+        <Search search = {searchTerm} onSearch={handleSearch} />
         <List list={searchedStories} />
 
       </div>
@@ -62,32 +62,36 @@ const App = () => {
 /*We accceot and use list from props instead of using global scope
 and it loops over the list and renders Item component for each time*/
 
-const Item = (props) =>(
+const Item = ({item}) => (
   <li>
    <span>
-      <a href={props.item.url}>{props.item.title}</a>
+      <a href={item.url}>{item.title}</a>
     </span>
-    <span>{props.item.author}</span>
-    <span>{props.item.num_comments}</span>
-    <span>{props.item.points}</span>
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
   </li>
 );
 
-const List = (props) => (
-    <ul>
-      {props.list.map((item) => (
-        <Item key = {item.objectID} item = {item} />
-      ))}
-    </ul>
+const List = ({ list }) => (
+  <ul>
+    {list.map((item) => (
+      <Item key = {item.objectID} item = {item} />
+    ))}
+  </ul>
 );
 
-
-
-const Search = (props) => (
-  <div>
+//using block body
+const Search = ({search, onSearch }) => (
+    <div> 
     <label htmlFor='search'>Search: </label>
-    <input id ='search' type="text" onChange={props.onSearch}/>
+    <input 
+      id ='search' 
+      type="text" 
+      value={search} 
+      onChange={onSearch}/>
   </div>
 );
+
 
 export default App
